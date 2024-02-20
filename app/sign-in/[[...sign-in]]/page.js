@@ -1,4 +1,3 @@
-// app/sign-in/[[...sign-in]]/page.tsx
 "use client";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,15 +9,27 @@ const Signin = () =>
 {
     const { isLoaded, signIn, setActive } = useSignIn();
     const [clerkError, setClerkError] = useState("");
+    const [signUpError, setSignUpError] = useState("")
+
+
     const router = useRouter();
 
     const signInWithEmail = async ({
         emailAddress,
         password,
+        repeatPassword,
     }) =>
     {
-        if (!isLoaded)
+
+        // if clerk hasn't loaded, the fields are not complete or the passwords repeat, exit the function.
+
+        if (!isLoaded || password !== repeatPassword || !email || !password || !repeatPassword)
         {
+            if (!isLoaded) return;
+            if (password !== repeatPassword)
+            {
+                setSignUpError("Passwords do not match");
+            }
             return;
         }
 
