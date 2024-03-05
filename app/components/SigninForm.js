@@ -33,15 +33,16 @@ const SigninForm = ({ signInWithEmail, clerkError }) =>
                     type="submit">
                     Sign in
                 </button>
-                <p>
-                    Don&apos;t have an account?
-                </p>
-                <p>
-                    <Link href="/sign-up">
-                        Sign up
-                    </Link>
-                </p>
             </form>
+            <p>
+                Don&apos;t have an account?
+            </p>
+            <Link href="/sign-up">
+                Sign up
+            </Link>
+            <Link href="/forgot-password">
+                Forgot Your Password?
+            </Link>   
         </div>
     );
 };

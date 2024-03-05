@@ -1,12 +1,9 @@
 import Link from "next/link";
 
-const SignupForm = ({ signUpWithEmail, clerkError }) =>
+const SignupForm = ({ handleSubmit, signUpError }) =>
 {
     return (
         <div>
-            <h1>
-                Sign Up
-            </h1>
             <form
                 onSubmit={(e) =>
                 {
@@ -16,8 +13,12 @@ const SignupForm = ({ signUpWithEmail, clerkError }) =>
                     const email = target.email.value;
                     const password = target.password.value;
                     const repeatPassword = target.repeatPassword.value;
-                    signUpWithEmail({ emailAddress: email, password: password, repeatPassword: repeatPassword });
+                    handleSubmit({ emailAddress: email, password: password, repeatPassword: repeatPassword });
                 }}>
+                <h1>
+                    Sign Up
+                </h1>
+                <p>Please fill your information below.</p>
                 <input
                     name="email"
                     placeholder="Email address"
@@ -34,7 +35,7 @@ const SignupForm = ({ signUpWithEmail, clerkError }) =>
                     type="password"
                     required />
                 <h2 >
-                    {clerkError && <p>{clerkError}</p>}
+                    {signUpError && <p>{signUpError}</p>}
                 </h2>
                 <button
                     type="submit">
@@ -44,12 +45,11 @@ const SignupForm = ({ signUpWithEmail, clerkError }) =>
                     Already have an account?
                 </p>
                 <p>
-                    <Link>
+                    <Link href="/sign-in">
                         Login to your account
                     </Link>
                 </p>
             </form>
-
         </div>
     );
 };

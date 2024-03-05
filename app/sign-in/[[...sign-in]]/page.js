@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSignIn } from "@clerk/nextjs";
@@ -9,7 +8,7 @@ const Signin = () =>
 {
     const { isLoaded, signIn, setActive } = useSignIn();
     const [clerkError, setClerkError] = useState("");
-    const [signUpError, setSignUpError] = useState("")
+    const [signInError, setSignInError] = useState("")
 
 
     const router = useRouter();
@@ -17,22 +16,12 @@ const Signin = () =>
     const signInWithEmail = async ({
         emailAddress,
         password,
-        repeatPassword,
     }) =>
-    {
-
-        // if clerk hasn't loaded, the fields are not complete or the passwords repeat, exit the function.
-
-        if (!isLoaded || password !== repeatPassword || !email || !password || !repeatPassword)
+    { 
+        if (!isLoaded)
         {
-            if (!isLoaded) return;
-            if (password !== repeatPassword)
-            {
-                setSignUpError("Passwords do not match");
-            }
             return;
         }
-
         try
         {
             const result = await signIn.create({
