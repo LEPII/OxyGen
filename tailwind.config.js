@@ -15,6 +15,15 @@ module.exports = {
         'c-green': '#7AAB79',
         'c-white': '#F5F5F7',
       },
+      extend: {
+        gradientColorStops: theme => ({
+          'start': '#030D19', 
+          'end': '#0B2443',
+        }),
+        linearGradientColors: theme => ({
+          'gradient-diagonal': ['to-tr', theme('colors.start'), theme('colors.end')],
+        }),
+      },
       fontSize: {
         "h-lg": ['38px'],
         "h-med": ['32px'],
@@ -38,5 +47,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-gradients')],
 };
